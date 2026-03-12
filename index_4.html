@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MBC Operations LLC</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:   #16263e;
+      --steel:  #274060;
+      --gold:   #b59055;
+      --gold-lt:#d4af70;
+      --cream:  #f8f5ef;
+      --text:   #2a2a2a;
+      --muted:  #6a6a6a;
+      --white:  #ffffff;
+      --serif:  'Cormorant Garamond', Georgia, serif;
+      --sans:   'Jost', 'Helvetica Neue', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--sans);
+      background: var(--white);
+      color: var(--text);
+      font-size: 16px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* HEADER */
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: var(--navy);
+      border-bottom: 2px solid var(--gold);
+      padding: 0 5vw;
+      height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-family: var(--serif);
+      font-size: 1.35rem;
+      font-weight: 600;
+      color: var(--white);
+      letter-spacing: 0.04em;
+      text-decoration: none;
+    }
+    .logo span { color: var(--gold); }
+
+    nav a {
+      font-family: var(--sans);
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.75);
+      text-decoration: none;
+      margin-left: 2.2rem;
+      transition: color 0.2s;
+    }
+    nav a:hover { color: var(--gold); }
+
+    /* HERO */
+    .hero {
+      background: var(--navy);
+      padding: 148px 5vw 90px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: 
+        radial-gradient(ellipse 60% 80% at 100% 50%, rgba(181,144,85,0.08) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 60% at 0% 100%, rgba(39,64,96,0.6) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .hero-inner {
+      max-width: 820px;
+      position: relative;
+    }
+    .hero-eyebrow {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.4rem;
+    }
+    .hero h1 {
+      font-family: var(--serif);
+      font-size: clamp(2.6rem, 5.5vw, 4.2rem);
+      font-weight: 500;
+      color: var(--white);
+      line-height: 1.15;
+      margin-bottom: 1.8rem;
+    }
+    .hero h1 em {
+      font-style: italic;
+      color: var(--gold-lt);
+    }
+    .hero-desc {
+      font-size: 1.05rem;
+      font-weight: 300;
+      color: rgba(255,255,255,0.72);
+      max-width: 580px;
+      line-height: 1.75;
+    }
+    .hero-rule {
+      width: 56px;
+      height: 2px;
+      background: var(--gold);
+      margin: 2rem 0;
+    }
+
+    /* SECTION BASE */
+    section { padding: 90px 5vw; }
+    .section-label {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.9rem;
+    }
+    .section-heading {
+      font-family: var(--serif);
+      font-size: clamp(1.9rem, 3.5vw, 2.8rem);
+      font-weight: 500;
+      color: var(--navy);
+      line-height: 1.2;
+      margin-bottom: 1.5rem;
+    }
+
+    /* INTRO */
+    .intro {
+      background: var(--cream);
+      border-top: 3px solid var(--gold);
+    }
+    .intro-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+      max-width: 1100px;
+    }
+    .intro-tagline {
+      font-family: var(--serif);
+      font-size: clamp(1.5rem, 2.4vw, 1.9rem);
+      font-weight: 500;
+      font-style: italic;
+      color: var(--steel);
+      line-height: 1.45;
+    }
+    .intro-text {
+      font-size: 0.97rem;
+      color: var(--text);
+      line-height: 1.8;
+    }
+
+    /* SERVICES */
+    .services { background: var(--white); }
+    .services-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      max-width: 1100px;
+      margin-top: 3.5rem;
+      border: 2px solid #e8e2d9;
+      overflow: hidden;
+    }
+    .service-card {
+      background: var(--white);
+      padding: 3rem 2.8rem;
+      border-right: 2px solid #e8e2d9;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .service-card:last-child { border-right: none; }
+    .service-card.visible { opacity: 1; transform: none; }
+    .card-num {
+      font-family: var(--serif);
+      font-size: 3.5rem;
+      font-weight: 400;
+      color: #e8e2d9;
+      line-height: 1;
+      margin-bottom: 1rem;
+    }
+    .card-heading {
+      font-family: var(--serif);
+      font-size: 1.6rem;
+      font-weight: 500;
+      color: var(--navy);
+      margin-bottom: 0.3rem;
+      line-height: 1.3;
+    }
+    .card-sub {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.2rem;
+    }
+    .card-body {
+      font-size: 0.95rem;
+      color: var(--muted);
+      line-height: 1.75;
+      margin-bottom: 1.5rem;
+    }
+    .card-list {
+      list-style: none;
+      padding: 0;
+    }
+    .card-list li {
+      font-size: 0.88rem;
+      color: var(--text);
+      padding: 0.45rem 0;
+      padding-left: 1.2rem;
+      border-bottom: 1px solid #f0ece5;
+      position: relative;
+    }
+    .card-list li:first-child { border-top: 1px solid #f0ece5; }
+    .card-list li::before {
+      content: '\2014';
+      position: absolute;
+      left: 0;
+      color: var(--gold);
+      font-size: 0.7rem;
+    }
+
+    /* QUOTE BAND */
+    .quote-band {
+      background: var(--steel);
+      padding: 72px 5vw;
+      position: relative;
+      overflow: hidden;
+    }
+    .quote-band::after {
+      content: '\201C';
+      position: absolute;
+      right: 4vw;
+      top: -0.1em;
+      font-family: var(--serif);
+      font-size: 22rem;
+      color: rgba(255,255,255,0.04);
+      line-height: 1;
+      pointer-events: none;
+    }
+    .quote-inner {
+      max-width: 760px;
+      position: relative;
+    }
+    .quote-text {
+      font-family: var(--serif);
+      font-size: clamp(1.35rem, 2.5vw, 1.8rem);
+      font-style: italic;
+      color: var(--white);
+      line-height: 1.55;
+      margin-bottom: 1.6rem;
+    }
+    .quote-attr {
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+    .quote-attr a {
+      color: var(--gold-lt);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(212,175,112,0.4);
+      transition: border-color 0.2s;
+    }
+    .quote-attr a:hover { border-color: var(--gold-lt); }
+
+    /* FOOTER */
+    footer {
+      background: var(--navy);
+      padding: 44px 5vw;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 2px solid var(--gold);
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .footer-logo {
+      font-family: var(--serif);
+      font-size: 1.1rem;
+      color: var(--white);
+      font-weight: 500;
+    }
+    .footer-logo span { color: var(--gold); }
+    .footer-copy {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.4);
+    }
+
+    /* SCROLL REVEAL */
+    .reveal {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    /* RESPONSIVE */
+    @media (max-width: 700px) {
+      nav { display: none; }
+      .intro-grid,
+      .services-grid { grid-template-columns: 1fr; }
+      .service-card { border-right: none; border-bottom: 2px solid #e8e2d9; }
+      .service-card:last-child { border-bottom: none; }
+      footer { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a class="logo" href="#top">MBC <span>Operations</span></a>
+    <nav>
+      <a href="#services">Services</a>
+      <a href="#about">About</a>
+      <a href="mailto:info@mbcoperations.com">Contact</a>
+    </nav>
+  </header>
+
+  <section class="hero" id="top">
+    <div class="hero-inner">
+      <p class="hero-eyebrow">Fractional &amp; Project-Based Executive Leadership</p>
+      <h1>Operational expertise,<br/><em>precisely when you need it.</em></h1>
+      <div class="hero-rule"></div>
+      <p class="hero-desc">MBC Operations LLC provides experienced executive leadership for companies that need fractional presence or targeted project expertise — without the overhead of a full-time hire.</p>
+    </div>
+  </section>
+
+  <section class="intro" id="about">
+    <div class="intro-grid reveal">
+      <div>
+        <p class="section-label">Who We Are</p>
+        <p class="intro-tagline">Decades of commercial operations experience. Deployed where it matters most.</p>
+      </div>
+      <div class="intro-text">
+        <p>We have worked with companies ranging from startups to large corporate enterprises and understand the issues that challenge them. We know how to focus operational resources to drive execution — and we are dedicated to building long-term partnerships with our clients.</p>
+        <br/>
+        <p>We have worked at all levels, from the C-suite to departments as varied as sales, procurement, operations, R&amp;D, communications, finance, marketing, and HR.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="services" id="services">
+    <p class="section-label reveal">Our Services</p>
+    <h2 class="section-heading reveal">Two ways we help your business.</h2>
+
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="card-num">01</div>
+        <h3 class="card-heading">Leadership Gap &amp; Fractional Operational Leadership</h3>
+        <p class="card-sub">Interim Executive Presence</p>
+        <p class="card-body">From time to time a leadership gap arises from unforeseen turnover, hiring freezes, or the need to properly scope a role. MBC Operations keeps the team running while you navigate toward a long-term solution — providing input on organizational structure, team scope, and cross-functional relationships along the way.</p>
+        <p class="card-sub" style="margin-top:1.4rem;">Areas of Experience</p>
+        <ul class="card-list">
+          <li>Planning — S&amp;OP, Revenue, Orders</li>
+          <li>Sales Operations, data analytics &amp; tools</li>
+          <li>GTM Planning and execution</li>
+          <li>Shared Services: Order management, A/R</li>
+          <li>Contract Management</li>
+          <li>Technical transformation teams — software &amp; process deployment, new product commercial readiness</li>
+          <li>Sales Commissions &amp; FP&amp;A</li>
+          <li>Commercial operations tools &amp; processes (HRIS, Procurement, Project Management, etc.)</li>
+          <li>Vendor identification and management</li>
+        </ul>
+      </div>
+
+      <div class="service-card" style="transition-delay: 0.15s;">
+        <div class="card-num">02</div>
+        <h3 class="card-heading">Project-Based Transformation Support</h3>
+        <p class="card-sub">Expert-Led Change Leadership</p>
+        <p class="card-body">Driving change while running the business is demanding. Whether it's a new acquisition, a major project that needs a dedicated leader, or a new capability rollout that requires precision timing and training — we're here to be your right-hand.</p>
+        <p class="card-body">We are adept at navigating organizations and driving operational teams to work together toward outcomes that benefit the business. We keep you informed at exactly the level of detail you want.</p>
+        <p class="card-sub" style="margin-top: 1rem;">What to Expect</p>
+        <ul class="card-list">
+          <li>Responsive, hands-on leadership from day one</li>
+          <li>Cross-functional team alignment &amp; coordination</li>
+          <li>C-suite to department-level communication</li>
+          <li>Focus on execution over documentation</li>
+          <li>Immediate relief — no long ramp-up period</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="quote-band">
+    <div class="quote-inner reveal">
+      <p class="quote-text">"No long reports, presentations, or extensive PowerPoints here — unless required by you. I created MBC Operations to provide a resource that is responsive and efficient and can step in to lead the teams or project and provide immediate relief where needed."</p>
+      <p class="quote-attr">
+        Marybeth Carberry &nbsp;|&nbsp; Founder &nbsp;|&nbsp;
+        <a href="https://www.linkedin.com/in/marybeth-carberry-2019/" target="_blank" rel="noopener">LinkedIn &#x2197;</a>
+      </p>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-logo">MBC <span>Operations</span> LLC</div>
+    <div class="footer-copy">&copy; 2025 MBC Operations LLC &nbsp;&middot;&nbsp; mbcoperations.com</div>
+  </footer>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal, .service-card').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
